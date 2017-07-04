@@ -17,6 +17,7 @@ def tell_me_which_directory():
         else:
             print("This isn't Kev's Home PC, must be laptop, so setting test default directory accordingly\n")
             direc = cfg.laptop_dir
+    print('{} is the direc'.format(direc))
     return direc
 
 
@@ -29,7 +30,7 @@ def main_fn():
         for filename in filenames:
             old_name = os.path.join(folderName, filename)
             new_name = os.path.join(abspath, filename)
-            # print("{}       <- WILL MOVE TO: \n{}\n".format(old_name, new_name))
+            print("{}       <- WILL MOVE or RENAME TO: \n{}\n".format(old_name, new_name))
             if not test_mode:
                 os.rename(old_name, new_name)
     for folderName, subfolders, filenames in os.walk(directory):
