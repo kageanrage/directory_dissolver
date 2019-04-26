@@ -6,6 +6,10 @@ import send2trash
 cfg = Config()
 test_mode = False
 
+# Directory Dissolver
+# use batch file to specify directory (dir)
+# script will delete all sub-dirs of that dir, moving any files contained within the sub-dirs, to that dir
+
 
 def tell_me_which_directory():
     if len(sys.argv) > 1:
@@ -24,7 +28,7 @@ def tell_me_which_directory():
 def main_fn():
     directory = tell_me_which_directory()
     print('Directory = {}\n'.format(directory))
-    os.chdir(directory) # change cwd to the desired directory
+    os.chdir(directory)  # change cwd to the desired directory
     abspath = os.path.abspath('.')  # define abspath
     for folderName, subfolders, filenames in os.walk(directory):
         for filename in filenames:
@@ -39,5 +43,6 @@ def main_fn():
             print('{}   <- Folder to be deleted'.format(full_folder_path))
             if not test_mode:
                 send2trash.send2trash(full_folder_path)
+
 
 main_fn()
