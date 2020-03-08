@@ -9,6 +9,7 @@ __pycache__/
 .cache
 .idea/
 config.py
+*.bat
 
 # User-specific stuff:
 .idea/**/workspace.xml
