@@ -25,24 +25,20 @@ def tell_me_which_directory():
     return direc
 
 
-def main_fn():
-    directory = tell_me_which_directory()
-    print('Directory = {}\n'.format(directory))
-    os.chdir(directory)  # change cwd to the desired directory
-    abspath = os.path.abspath('.')  # define abspath
-    for folderName, subfolders, filenames in os.walk(directory):
-        for filename in filenames:
-            old_name = os.path.join(folderName, filename)
-            new_name = os.path.join(abspath, filename)
-            print("{}       <- WILL MOVE or RENAME TO: \n{}\n".format(old_name, new_name))
-            if not test_mode:
-                os.rename(old_name, new_name)
-    for folderName, subfolders, filenames in os.walk(directory):
-        for subfolder in subfolders:
-            full_folder_path = os.path.join(folderName, subfolder)
-            print('{}   <- Folder to be deleted'.format(full_folder_path))
-            if not test_mode:
-                send2trash.send2trash(full_folder_path)
-
-
-main_fn()
+directory = tell_me_which_directory()
+print(f'Directory = {directory}\n')
+os.chdir(directory)  # change cwd to the desired directory
+abspath = os.path.abspath('.')  # define abspath
+for folderName, subfolders, filenames in os.walk(directory):
+    for filename in filenames:
+        old_name = os.path.join(folderName, filename)
+        new_name = os.path.join(abspath, filename)
+        print(f"{old_name}       <- WILL MOVE or RENAME TO: \n{new_name}\n")
+        if not test_mode:
+            os.rename(old_name, new_name)
+for folderName, subfolders, filenames in os.walk(directory):
+    for subfolder in subfolders:
+        full_folder_path = os.path.join(folderName, subfolder)
+        print(f'{full_folder_path}   <- Folder to be deleted')
+        if not test_mode:
+            send2trash.send2trash(full_folder_path)
