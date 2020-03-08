@@ -1,1 +1,0 @@
-@"C:\Program Files\Python37\python.exe" "C:\Github local repos\directory_dissolver\dir_dissolver.py" "H:\Photos\ipcam" %*
